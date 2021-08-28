@@ -1,6 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { MaterialIcons } from '@expo/vector-icons';
+
+import HeaderTitle from './components/HeaderTitle';
 
 import About from './pages/About';
 import Home from './pages/Home';
@@ -19,8 +22,29 @@ function Routes() {
         drawerInactiveTintColor: '#ffffff',
       }}
       >
-        <Drawer.Screen name="Home" component={Home} options={{ headerTitle: 'Página inicial' }} />
-        <Drawer.Screen name="About" component={About} options={{ headerTitle: 'Sobre' }} />
+        <Drawer.Screen
+          name="Home"
+          component={Home}
+          options={{
+            drawerIcon: ({ color, size }) => (
+              <MaterialIcons name="home" size={size} color={color} />
+            ),
+            title: 'Página inicial',
+            headerTitle: ({ children }) => <HeaderTitle title={children} />,
+          }}
+        />
+        <Drawer.Screen
+          name="About"
+          component={About}
+          options={{
+            drawerIcon: ({ color, size }) => (
+              <MaterialIcons name="info" size={size} color={color} />
+            ),
+            title: 'Sobre',
+            headerTitle: ({ children }) => <HeaderTitle title={children} />,
+          }}
+
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
